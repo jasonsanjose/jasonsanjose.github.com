@@ -1,0 +1,405 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Brackets - Contributor Crash Course</title>
+
+		<meta name="description" content="A crash course that covers different ways to contribute as well as a high level architecture overview.">
+		<meta name="author" content="Jason San Jose">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/default.css">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+                    <h1>Brackets Crash Course</h1>
+                    <p>
+                        <i><small>Jason San Jose / <a href="http://twitter.com/jasonsanjose">@jasonsanjose</a></small></i>
+                    </p>
+                </section>
+                
+                <section>
+                    <h2>Contributions !== Code</h2>
+                    <ul>
+                        <li>Use (and test) Brackets!</li>
+                        <li>File bugs and feature ideas:<br>
+                            <a href="https://github.com/adobe/brackets/issues">github.com/adobe/brackets/issues</a></li>
+                        <li>Vote or comment on backlog/icebox items:<br>
+                            <a href="http://bit.ly/BracketsBacklog">bit.ly/BracketsBacklog</a></li>
+                        <li>Update/create developer or user documentation:<br>
+                            <a href="https://github.com/adobe/brackets/wiki">github.com/adobe/brackets/wiki</a></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Contributions === Code</h2>
+                    <ul>
+                        <li><a href="https://github.com/adobe/brackets/issues?labels=starter+bug&state=open">Issues labelled "starter bug"</a></li>
+                        <li><a href="http://bit.ly/BracketsBacklog">Backlog/icebox items labelled "starter feature"</a></li>
+                        <li>Things you want to see in Brackets</li>
+                        <li>Contributions to core require a <a href="http://dev.brackets.io/brackets-contributor-license-agreement.html">signed CLA</a></li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Signing Up for a Bug</h2>
+                    <ul>
+                        <li>Make sure it isn't "fix in progress" or "fixed but not closed"</li>
+                        <li>Comment on the bug saying that you're working on it</li>
+                        <li>After pull request is merged, comment on the bug asking the filer to close</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Signing Up for a Feature</h2>
+                    <ul>
+                        <li>Mention what you're working on on the Google Group or IRC</li>
+                        <li>Describe your design/approach and get feedback</li>
+                        <li>Or post a prototype (as a branch in your fork or as an extension)</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Pull Request Reviews</h2>
+                    <ul>
+                        <li>Small changes should be reviewed within a couple of days</li>
+                        <li>Larger changes/features will be scheduled for a future sprint</li>
+                        <li>Core team sprints are 2.5 weeks long</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Core vs. Extensions</h2>
+                    <ul>
+                        <li>Want to keep the core of Brackets small</li>
+                        <li>Try to build your feature as an extension</li>
+                        <li>Discuss with community where you run into problems or want a general API</li>
+                        <li>Extensions not in adobe/brackets repo don't need pull requests</li>
+                        <li>When ready to post, add a link to <a href="https://github.com/adobe/brackets/wiki/Brackets-Extensions">Brackets Extensions</a> page</li>
+                        <li>If it makes sense in the Brackets core distro, we can pull it into <code>extensions/disabled</code> and review</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Built with existing tools and frameworks</h2>
+                    <ul>
+                        <li><a href="http://code.google.com/p/chromiumembedded/">Chromium Embedded Framework</a> - Chromium/Webkit</li>
+                        <li><a href="http://codemirror.net">CodeMirror</a> - Code editing widget</li>
+                        <li><a href="http://requirejs.org">RequireJS</a> - File and module loading</li>
+                        <li><a href="http://jquery.org">jQuery</a> - DOM, event handling, async</li>
+                        <li><a href="http://mustache.github.com/">Mustache</a> - Logic-less templates</li>
+                        <li><a href="http://lesscss.org">LESS</a> - Dynamic stylesheet language</li>
+                        <li><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> - UI widgets, scaffolding</li>
+                        <li><a href="http://jslint.com">JSLint</a> - JavaScript Code Quality Tool</li>
+                        <li><a href="http://pivotal.github.com/jasmine/">Jasmine</a> - BDD framework for testing JavaScript</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>How to Build an Extension</h2>
+                    <ul>
+                        <li>Create a folder or repo in <code>extensions/user</code></li>
+                        <li>Create a <code>main.js</code> file containing your main module</li>
+                        <li>Use <code>brackets.getModule()</code> for core modules</li>
+                        <li>Use <code>require()</code> for your own modules</li>
+                    </ul>
+                </section>
+				
+				<section>
+					<h2>Example: Hello World</h2>
+					<pre><code contenteditable>
+define(function (require, exports, module) {
+    'use strict';
+
+    var CommandManager = brackets.getModule("command/CommandManager"),
+        Menus          = brackets.getModule("command/Menus");
+    
+    // Function to run when the menu item is clicked
+    function handleHelloWorld() {
+        window.alert("Hello, world!");
+    }
+    
+    // First, register a command - a UI-less object associating an id to a handler
+    var MY_COMMAND_ID = "helloworld.sayhello";   // package-style naming to avoid collisions
+    CommandManager.register("Hello World", MY_COMMAND_ID, handleHelloWorld);
+
+    // Then create a menu item bound to the command
+    // The label of the menu item is the name we gave the command (see above)
+    var menu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
+    menu.addMenuItem(MY_COMMAND_ID);
+});
+					</code></pre>
+				</section>
+                
+                <section>
+                    <h2>Some Limitations of Extensions</h2>
+                    <ul>
+                        <li>Brackets doesn't yet use CommonJS <code>package.json</code>, but will move to that in the future</li>
+                        <li>Don't yet have clean APIs for adding menu items/keyboard shortcuts</li>
+                        <li>Don't yet have official UI/mechanisms for discovering/installing/managing extensions (see <a href="https://github.com/jdiehl/brackets-extension-manager">Extension Manager</a></li>
+                    </ul>
+                </section>
+                
+				<section>
+					<h2>Developement Workflow</h2>
+                    <ul>
+                        <li><a href="https://github.com/adobe/brackets-shell/downloads">Download</a> or <a href="https://github.com/adobe/brackets-shell">build</a> the latest brackets-shell</li>
+                        <li>Clone or fork the <a href="https://github.com/adobe/brackets">Brackets</a> repo</li>
+                        <li>Point brackets-shell to <code>index.html</code> (use Shift at launch to change location)</li>
+                        <li>Debug <a href="http://localhost:9234">http://localhost:9234</a> Bracket's Web Inspector</li>
+                        <li>Occasionally clear cache and preferences
+                            <ul>
+                                <li>{USER}/Library/Application Support/Brackets/cef_data</li>
+                                <li>{USER}\AppData\Roaming\Brackets\cef_data</li>
+                            </ul>
+                        </li>
+                    </ul>
+				</section>
+                
+                <section>
+                    <h1>UI Organization</h1>
+                </section>
+                
+                <section>
+                    <h1>Core Architecture</h1>
+                    <section>
+                        <h2>Async</h2>
+                        <pre><code contenteditable>
+// Many Brackets APIs return a jQuery Promise
+var promise = doSomethingAsync();
+
+// Setup callbacks
+promise.done(function (result) {
+  // handle result
+})
+promise.fail(function (error) {
+  // handle failure
+});
+					   </code></pre>
+                    </section>
+                    <section>
+                        <h2>Async Internals</h2>
+                        <pre><code contenteditable>
+// You may need to define your own Async APIs
+function publicAsyncCall() {
+  var result = new $.Deferred();
+
+  sendNetworkRequest(function (response) {
+    if (response.error)
+      result.reject(response.error);
+    else
+      result.resolve(response.data);
+  });
+
+  return result.promise();
+}
+
+// See utils/Async module for handling multiple async operations
+					   </code></pre>
+                    </section>
+                    <section>
+                        <h2>Commands</h2>
+                        <pre><code contenteditable>
+// Register a command with a label, unique id and a callback
+var MY_COMMAND_ID = "helloworld.sayhello";
+CommandManager.register("Hello World", MY_COMMAND_ID, function () {...});
+
+// Execute a command
+CommandManager.execute(MY_COMMAND_ID, /* optional arguments, e.g. { arg: value } */ );
+					   </code></pre>
+                    </section>
+                    <section>
+                        <h2>Key Bindings</h2>
+                        <pre><code contenteditable>
+// Define keyboard bindings (can be platform neutral or specific)
+var bindings = [
+  { key: "Ctrl-H",˙platform: "win" },
+  { key: "Opt-H", platform: "mac" }
+];
+
+// Register a command and key binding
+KeyBindingManager.addBinding(MY_COMMAND_ID, bindings);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Menus</h2>
+                        <pre><code contenteditable>
+// Acquire a top-level menu
+var menu = Menus.getMenu(Menus.AppMenuBar.FILE_MENU);
+
+// Add the menu item
+menu.addMenuItem(MY_COMMAND_ID, /* optional key binding, e.g. "Ctrl-H" */);
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Documents &amp; Editors</h2>
+                        <ul>
+                            <li>Document is the model. It contains the text of a file on disk.</li>
+                            <li>Editor is a thin wrapper around CodeMirror</li>
+                            <li>A Document may have 0..n Editors associated with it</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Getting a Document</h2>
+                        <pre><code contenteditable>
+// Get the focused editor (may be "full" size or inline)
+EditorManager.getFocusedEditor().document
+
+// Get any document given a file path. Asynchronous.
+DocumentManager.getDocumentForPath(path)
+
+// Get an open document given a file path. Synchronous.
+DocumentManager.getOpenDocumentForPath(path)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Using a Document</h2>
+                        <pre><code contenteditable>
+// Getting text
+doc.getText(), doc.getRange(start, end), getLine(lineNum)
+
+// Setting text
+doc.setText(text), doc.replaceRange(text, start, end), doc.batchOperation(callbackFunction)
+
+// Event handling
+$(doc).on("change", handler), $(doc).on("deleted", handler)
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Listening for Change Events</h2>
+                        <pre><code contenteditable>
+// if holding on to a document for longer than a function call, ref count it!
+var myDoc;
+
+function init() {
+  myDoc = getSomeDocument();
+  myDoc.addRef();
+  $(myDoc).on("change", handler);
+}
+
+function complete() {
+  myDoc.releaseRef();
+  $(myDoc).off("change", handler);
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Other File I/O</h2>
+                        <pre><code contenteditable>
+// On Windows, paths look like "C:/foo/bar.txt"
+// On Mac, paths look like "/foo/bar.txt"
+var fileEntry = new NativeFileSystem.FileEntry(localPath);
+
+var promise = FileUtils.readAsText(fileEntry);  // completes asynchronously
+promise.done(function (text) {
+    console.log("The contents of the file are:\n" + text);
+}
+.fail(function (errorCode) {
+    console.log("Error #" + errorCode);  // one of the FileError constants
+});
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Extending Existing Features</h2>
+                        <pre><code contenteditable>
+// Quick edit (a.k.a. inline editors)
+EditorManager.registerInlineEditorProvider();
+
+// Quick open 
+QuickOpen.addQuickOpenPlugin();
+
+// Code hints
+CodeHintManager.registerHintProvider();
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Odds and Ends</h2>
+                        <pre><code contenteditable>
+// Load a text file via RequireJS
+var text = require("text!path/to/file.txt");
+
+// Using templates
+Mustache.render(templateText, view);
+
+// Localized strings
+var Strings = require("nls/strings");
+StringUtils.format("{0}, {1}!", Strings.HELLO, "Brackets");
+                        </code></pre>
+                    </section>
+                </section>
+                
+				<section>
+					<h1>Hacking Time!</h1>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } }/*,
+					{ src: 'socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },*/
+				]
+			});
+			
+		</script>
+
+	</body>
+</html>
