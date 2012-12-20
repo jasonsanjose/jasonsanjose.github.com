@@ -58,4 +58,9 @@ Team Highlights
 
 Demos
 -----
-*
+* [Jason]: Linux keybinding demo
+* [Jason]: MORE Language extension
+* [Jason]: Glenn's Markdown Preview extension
+* [Randy]: Emmet extension
+* [Randy]: Beautify extension
+* [Randy]: QuickOpenPHP extension
