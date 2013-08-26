@@ -1,0 +1,78 @@
+
+<!doctype html>
+<html>
+<title>CodeMirror: Indented wrapped line demo</title>
+<meta charset="utf-8"/>
+<link rel=stylesheet href="http://codemirror.net/doc/docs.css">
+
+<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+<script src="http://codemirror.net/lib/codemirror.js"></script>
+<style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<body>
+
+<textarea id="code" name="code">
+html {
+    background-color: #eeeeee;
+    background-image: linear-gradient(bottom, rgb(238,238,238) 18%, rgb(153,153,153) 59%, rgb(238,238,238) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(238,238,238) 18%, rgb(153,153,153) 59%, rgb(238,238,238) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(238,238,238) 18%, rgb(153,153,153) 59%, rgb(238,238,238) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(238,238,238) 18%, rgb(153,153,153) 59%, rgb(238,238,238) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(238,238,238) 18%, rgb(153,153,153) 59%, rgb(238,238,238) 80%);
+}
+
+body {
+    margin: 0 auto;
+    padding: 2em;
+    max-width: 800px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em;
+    color: #333333;
+    background-color: #ffffff;
+    -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.3em;
+}
+
+samp
+{
+    /* hide <samp> from the browser so we can show cool features in Edge Code */
+    display: none;
+}
+
+img
+{
+    background: dimgray;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 15px 10px 10px;
+    margin: 10px 0;
+    max-width: 95%;
+}
+</textarea>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    lineWrapping: true
+  });
+
+  function resize() {
+    editor.setSize(document.body.clientWidth, document.body.clientHeight);
+    editor.refresh();
+  }
+
+  $(document).ready(resize);
+  $(window).resize(resize);
+</script>
+
+</body></html>
